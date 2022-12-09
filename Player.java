@@ -8,10 +8,14 @@ public class Player {
     private Knight knight;
     private Queen queen;
     private King king;
+    private JButton[][] buttons;
+    private boolean isSelected;
+
 
     // Pawn class
     private class Pawn {
         private ImageIcon pawn;
+        private boolean isSelected;
 
         public Pawn(String color) {
             if (color.equals("white"))
@@ -20,6 +24,7 @@ public class Player {
                 this.pawn = new ImageIcon("chesspieces/black_pawn.png");
 
         }
+
     }
 
     private class Rook {
@@ -42,8 +47,9 @@ public class Player {
                 this.bishop = new ImageIcon("chesspieces/white_bishop.png");
             else if (color.equals("black"))
                 this.bishop = new ImageIcon("chesspieces/black_bishop.png");
-
         }
+
+
     }
 
     private class Knight {
@@ -89,10 +95,14 @@ public class Player {
         this.bishop = new Bishop(color);
         this.queen = new Queen(color);
         this.king = new King(color);
+        this.isSelected = false;
     }
 
+    public boolean isSelected(Player that) {
+        return isSelected;
+    }
 
-    public static void main(String[] args) {
+    public static void displayBoard() {
         // Create a Frame
         JFrame frame = new JFrame("Chess Board");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -100,6 +110,7 @@ public class Player {
         // array of buttons
         Board board = new Board();
         JButton[][] buttons = board.buttons();
+        JButton selectedButton = null;
 
         Player white = new Player("white");
         Player black = new Player("black");
@@ -120,6 +131,7 @@ public class Player {
 
         buttons[0][3].setIcon(white.queen.queen);
         buttons[0][4].setIcon(white.king.king);
+
         // set up
         for (int i = 0; i < 8; i++) {
             buttons[6][i].setIcon(black.pawn.pawn);
@@ -148,8 +160,39 @@ public class Player {
             }
         }
 
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                int finalI = i;
+                int finalJ = j;
+                buttons[i][j].addActionListener(e -> buttons[finalI][finalJ].setSelected(true));
+
+                if (buttons[i][j].isSelected()) {
+                    white.isSelected = true;
+                    selectedButton = buttons[i][j];
+                    break;
+                }
+            }
+        }
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                int finalI = i;
+                int finalJ = j;
+                buttons[i][j].addActionListener(e -> buttons[finalI][finalJ].setSelected(true));
+
+                if (white.isSelected) {
+                    System.out.println("hello");
+                }
+            }
+        }
+
+
         //Display the window.
         frame.setSize(1000, 1000);
         frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        displayBoard();
     }
 }
