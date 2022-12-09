@@ -18,9 +18,9 @@ public class Board {
                 buttons[i][j].setBorderPainted(false);
                 buttons[i][j].setBorder(null);
                 if ((i + j) % 2 == 0) {
-                    buttons[i][j].setBackground(Color.DARK_GRAY);
-                } else {
                     buttons[i][j].setBackground(Color.LIGHT_GRAY);
+                } else {
+                    buttons[i][j].setBackground(Color.WHITE);
                 }
             }
         }
