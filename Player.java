@@ -2,8 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Player {
-    private Pawn whitePawn;
-    private Pawn blackPawn;
+    private Pawn pawn;
 
     // Pawn class
     private class Pawn {
@@ -18,9 +17,8 @@ public class Player {
         }
     }
 
-    public Player() {
-        this.whitePawn = new Pawn("white");
-        this.blackPawn = new Pawn("black");
+    public Player(String color) {
+        this.pawn = new Pawn(color);
     }
 
 
@@ -33,15 +31,14 @@ public class Player {
         Board board = new Board();
         JButton[][] buttons = board.buttons();
 
-        Player player = new Player();
-        Pawn blackPawn1 = player.blackPawn;
-        Pawn whitePawn1 = player.whitePawn;
+        Player white = new Player("white");
+        Player black = new Player("black");
 
         for (int i = 0; i < 8; i++) {
-            buttons[6][i].setIcon(blackPawn1.pawn);
+            buttons[6][i].setIcon(black.pawn.pawn);
         }
         for (int i = 0; i < 8; i++) {
-            buttons[1][i].setIcon(whitePawn1.pawn);
+            buttons[1][i].setIcon(white.pawn.pawn);
         }
 
         // create 8 x 8 container
