@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Board {
-    private JButton[][] buttons; //buttons
+    private JButton[][] buttons; // buttons
 
     public Board() {
         this.buttons = buttons();
