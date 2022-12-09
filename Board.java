@@ -9,6 +9,9 @@ public class Board {
         JFrame frame = new JFrame("Chess Board");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // Create an array of buttons
+        
+
         // create 8 x 8 container
         Container container = frame.getContentPane();
         container.setLayout(new GridLayout(8, 8));
