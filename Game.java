@@ -63,6 +63,8 @@ public class Game {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     if (e.getSource() == buttons[i][j]) {
+//                        if(((ImageIcon)buttons[i][j].getIcon()).getDescription().equals("white"))
+//                          System.out.println("placeholder");
                         if (!(selected.get())) {
                             curR.set(i);
                             curC.set(j);
@@ -72,6 +74,8 @@ public class Game {
                             buttons[i][j].setIcon(buttons[curR.get()][curC.get()].getIcon());
                             buttons[curR.get()][curC.get()].setIcon(null);
                             selected.set(false);
+                            white.setPlayerTurn(!white.getPlayerTurn());
+                            black.setPlayerTurn(!black.getPlayerTurn());
                         }
                     }
                 }
