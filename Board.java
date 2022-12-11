@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Board {
     private JButton[][] buttons; // buttons
@@ -17,6 +19,9 @@ public class Board {
                 buttons[i][j].setOpaque(true);
                 buttons[i][j].setBorderPainted(false);
                 buttons[i][j].setBorder(null);
+                int finalI = i;
+                int finalJ = j;
+                buttons[i][j].addActionListener(e -> buttons[finalI][finalJ].setSelected(true));
                 if ((i + j) % 2 == 0) {
                     buttons[i][j].setBackground(Color.LIGHT_GRAY);
                 } else {
@@ -34,6 +39,14 @@ public class Board {
         JFrame frame = new JFrame("Chess Board");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        ActionListener listener = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() instanceof JButton) {
+                    System.out.println("something");
+                }
+            }
+        };
+
         // Create an array of buttons
         Board board = new Board();
         JButton[][] buttons = board.buttons();
@@ -45,6 +58,7 @@ public class Board {
         // add and color buttons as squares on the chess board
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
+                buttons[i][j].addActionListener(listener);
                 container.add(buttons[i][j]);
             }
         }
