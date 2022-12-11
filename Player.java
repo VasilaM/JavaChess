@@ -8,7 +8,7 @@ public class Player {
     private Queen queen;
     private King king;
     private JButton[][] buttons;
-    private boolean isSelected;
+    private boolean playerTurn;
 
 
     // Pawn class
@@ -86,18 +86,18 @@ public class Player {
         }
     }
 
-    public Player(String color) {
+    public Player(String color, boolean playerTurn) {
         this.pawn = new Pawn(color);
         this.knight = new Knight(color);
         this.rook = new Rook(color);
         this.bishop = new Bishop(color);
         this.queen = new Queen(color);
         this.king = new King(color);
-        this.isSelected = false;
+        this.playerTurn = playerTurn;
     }
 
-    public boolean isSelected(Player that) {
-        return isSelected;
+    public void setPlayerTurn(boolean playerTurn) {
+        this.playerTurn = playerTurn;
     }
 
     public ImageIcon getPawn() {

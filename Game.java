@@ -13,8 +13,8 @@ public class Game {
         Board board = new Board();
         JButton[][] buttons = board.buttons();
 
-        Player white = new Player("white");
-        Player black = new Player("black");
+        Player white = new Player("white", true);
+        Player black = new Player("black", false);
 
 
         // set up white players
@@ -71,6 +71,7 @@ public class Game {
                         } else {
                             buttons[i][j].setIcon(buttons[curR.get()][curC.get()].getIcon());
                             buttons[curR.get()][curC.get()].setIcon(null);
+                            selected.set(false);
                         }
                     }
                 }
