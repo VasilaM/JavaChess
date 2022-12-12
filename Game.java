@@ -63,13 +63,26 @@ public class Game {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     if (e.getSource() == buttons[i][j]) {
-//                        if(((ImageIcon)buttons[i][j].getIcon()).getDescription().equals("white"))
-//                          System.out.println("placeholder");
-                        if (!(selected.get())) {
+                        if (!(selected.get())
+                                && ((((ImageIcon) buttons[i][j].getIcon()).getDescription().equals("white")
+                                && white.getPlayerTurn()))) {
                             curR.set(i);
                             curC.set(j);
                             buttons[i][j].setSelected(true);
                             selected.set(true);
+                        } else if (!(selected.get()) &&
+                                ((((ImageIcon) buttons[i][j].getIcon()).getDescription().equals("black")
+                                        && black.getPlayerTurn()))) {
+                            curR.set(i);
+                            curC.set(j);
+                            buttons[i][j].setSelected(true);
+                            selected.set(true);
+                        } else if (!(selected.get()) &&
+                                (((((ImageIcon) buttons[i][j].getIcon()).getDescription().equals("black")
+                                        && !black.getPlayerTurn())) ||
+                                        ((((ImageIcon) buttons[i][j].getIcon()).getDescription().equals("white")
+                                                && !white.getPlayerTurn())))) {
+                            throw new IllegalArgumentException("Invalid Move");
                         } else {
                             buttons[i][j].setIcon(buttons[curR.get()][curC.get()].getIcon());
                             buttons[curR.get()][curC.get()].setIcon(null);
