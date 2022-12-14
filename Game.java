@@ -93,7 +93,8 @@ public class Game {
                                 white.setPlayerTurn(!white.getPlayerTurn());
                                 black.setPlayerTurn(!black.getPlayerTurn());
                             } else {
-                                System.out.println(move.getLegalMove());
+                                selected.set(false);
+                                throw new IllegalArgumentException("Invalid Move");
                             }
                         }
                     }
