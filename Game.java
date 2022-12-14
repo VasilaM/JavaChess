@@ -63,32 +63,38 @@ public class Game {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     if (e.getSource() == buttons[i][j]) {
+                        LegalMove move = new LegalMove(buttons);
                         if (!(selected.get())
-                                && ((((ImageIcon) buttons[i][j].getIcon()).getDescription().equals("white")
+                                && ((((ImageIcon) buttons[i][j].getIcon()).getDescription().contains("white")
                                 && white.getPlayerTurn()))) {
                             curR.set(i);
                             curC.set(j);
                             buttons[i][j].setSelected(true);
                             selected.set(true);
                         } else if (!(selected.get()) &&
-                                ((((ImageIcon) buttons[i][j].getIcon()).getDescription().equals("black")
+                                ((((ImageIcon) buttons[i][j].getIcon()).getDescription().contains("black")
                                         && black.getPlayerTurn()))) {
                             curR.set(i);
                             curC.set(j);
                             buttons[i][j].setSelected(true);
                             selected.set(true);
                         } else if (!(selected.get()) &&
-                                (((((ImageIcon) buttons[i][j].getIcon()).getDescription().equals("black")
+                                (((((ImageIcon) buttons[i][j].getIcon()).getDescription().contains("black")
                                         && !black.getPlayerTurn())) ||
-                                        ((((ImageIcon) buttons[i][j].getIcon()).getDescription().equals("white")
+                                        ((((ImageIcon) buttons[i][j].getIcon()).getDescription().contains("white")
                                                 && !white.getPlayerTurn())))) {
                             throw new IllegalArgumentException("Invalid Move");
                         } else {
-                            buttons[i][j].setIcon(buttons[curR.get()][curC.get()].getIcon());
-                            buttons[curR.get()][curC.get()].setIcon(null);
-                            selected.set(false);
-                            white.setPlayerTurn(!white.getPlayerTurn());
-                            black.setPlayerTurn(!black.getPlayerTurn());
+                            move.setPositions(i, j, curR.get(), curC.get());
+                            if (move.getLegalMove()) {
+                                buttons[i][j].setIcon(buttons[curR.get()][curC.get()].getIcon());
+                                buttons[curR.get()][curC.get()].setIcon(null);
+                                selected.set(false);
+                                white.setPlayerTurn(!white.getPlayerTurn());
+                                black.setPlayerTurn(!black.getPlayerTurn());
+                            } else {
+                                System.out.println(move.getLegalMove());
+                            }
                         }
                     }
                 }

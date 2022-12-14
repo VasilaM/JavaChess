@@ -18,9 +18,9 @@ public class Player {
 
         private Pawn(String color) {
             if (color.equals("white"))
-                this.pawn = new ImageIcon("chesspieces/white_pawn.png", "white");
+                this.pawn = new ImageIcon("chesspieces/white_pawn.png", "white pawn");
             else if (color.equals("black"))
-                this.pawn = new ImageIcon("chesspieces/black_pawn.png", "black");
+                this.pawn = new ImageIcon("chesspieces/black_pawn.png", "black pawn");
 
         }
     }
@@ -30,9 +30,9 @@ public class Player {
 
         private Rook(String color) {
             if (color.equals("white"))
-                this.rook = new ImageIcon("chesspieces/white_rook.png", "white");
+                this.rook = new ImageIcon("chesspieces/white_rook.png", "white rook");
             else if (color.equals("black"))
-                this.rook = new ImageIcon("chesspieces/black_rook.png", "black");
+                this.rook = new ImageIcon("chesspieces/black_rook.png", "black rook");
 
         }
     }
@@ -42,12 +42,10 @@ public class Player {
 
         private Bishop(String color) {
             if (color.equals("white"))
-                this.bishop = new ImageIcon("chesspieces/white_bishop.png", "white");
+                this.bishop = new ImageIcon("chesspieces/white_bishop.png", "white bishop");
             else if (color.equals("black"))
-                this.bishop = new ImageIcon("chesspieces/black_bishop.png", "black");
+                this.bishop = new ImageIcon("chesspieces/black_bishop.png", "black bishop");
         }
-
-
     }
 
     private class Knight {
@@ -55,9 +53,9 @@ public class Player {
 
         private Knight(String color) {
             if (color.equals("white"))
-                this.knight = new ImageIcon("chesspieces/white_knight.png", "white");
+                this.knight = new ImageIcon("chesspieces/white_knight.png", "white knight");
             else if (color.equals("black"))
-                this.knight = new ImageIcon("chesspieces/black_knight.png", "black");
+                this.knight = new ImageIcon("chesspieces/black_knight.png", "black knight");
 
         }
     }
@@ -67,9 +65,9 @@ public class Player {
 
         private King(String color) {
             if (color.equals("white"))
-                this.king = new ImageIcon("chesspieces/white_king.png", "white");
+                this.king = new ImageIcon("chesspieces/white_king.png", "white king");
             else if (color.equals("black"))
-                this.king = new ImageIcon("chesspieces/black_king.png", "black");
+                this.king = new ImageIcon("chesspieces/black_king.png", "black king");
 
         }
     }
@@ -79,9 +77,9 @@ public class Player {
 
         private Queen(String color) {
             if (color.equals("white"))
-                this.queen = new ImageIcon("chesspieces/white_queen.png", "white");
+                this.queen = new ImageIcon("chesspieces/white_queen.png", "white queen");
             else if (color.equals("black"))
-                this.queen = new ImageIcon("chesspieces/black_queen.png", "black");
+                this.queen = new ImageIcon("chesspieces/black_queen.png", "black queen");
 
         }
     }
