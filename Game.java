@@ -95,8 +95,8 @@ public class Game {
                         else {
                             move.setPositions(i, j, curR.get(), curC.get());
                             if (move.getLegalMove()) {
-                                Checks.pawnPromotion(buttons, i, j);
-                                Checks.isKingCaptured(frame, buttons, curR.get(), curC.get(), i, j);
+                                Checks.isKingCaptured(buttons, curR.get(), curC.get(), i, j);
+                                Checks.pawnPromotion(buttons, curR.get(), curC.get(), i);
                                 buttons[i][j].setIcon(buttons[curR.get()][curC.get()].getIcon());
                                 buttons[curR.get()][curC.get()].setIcon(null);
                                 selected.set(false);
