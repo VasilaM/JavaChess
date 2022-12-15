@@ -12,6 +12,7 @@ public class Player {
 
 
     // Pawn class
+    // ImageIcon implementation informed by https://docs.oracle.com/javase/7/docs/api/javax/swing/ImageIcon.html
     private static class Pawn {
         private ImageIcon pawn;
 

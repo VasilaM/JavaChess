@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 // Create chess board
 public class Board {
     // Construct buttons array
+    // JButton implementation informed by https://docs.oracle.com/javase/7/docs/api/javax/swing/JButton.html
     public JButton[][] buttons() {
         JButton[][] buttons = new JButton[8][8];
 
@@ -32,13 +33,11 @@ public class Board {
     // Use to test
     public static void main(String[] args) {
         // Create a Frame
+        // Informed by https://docs.oracle.com/javase/7/docs/api/javax/swing/JFrame.html
         JFrame frame = new JFrame("Chess Board");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         ActionListener listener = e -> {
-            if (e.getSource() instanceof JButton) {
-                System.out.println("something");
-            }
         };
 
         // Create an array of buttons
@@ -46,6 +45,8 @@ public class Board {
         JButton[][] buttons = board.buttons();
 
         // create 8 x 8 container
+        // Implementation informed by https://docs.oracle.com/javase/7/docs/api/java/awt/Container.html
+        // and https://docs.oracle.com/javase/7/docs/api/java/awt/GridLayout.html
         Container container = frame.getContentPane();
         container.setLayout(new GridLayout(8, 8));
 
