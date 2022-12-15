@@ -130,6 +130,7 @@ public class Game {
 
     }
 
+    // Begin new game. Use for testing features by ensuring game rules are implemented properly.
     public static void main(String[] args) {
         Game.newGame();
     }
