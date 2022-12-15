@@ -1,19 +1,18 @@
 import javax.swing.*;
 
+// Defines player object and wrapper classes for pieces
 public class Player {
-    private Pawn pawn;
-    private Rook rook;
-    private Bishop bishop;
-    private Knight knight;
-    private Queen queen;
-    private King king;
-    private JButton[][] buttons;
-    private String color;
-    private boolean playerTurn;
+    private final Pawn pawn; // Pawn object
+    private final Rook rook; // Rook object
+    private final Bishop bishop; // Bishop object
+    private final Knight knight; // Knight object
+    private final Queen queen; // Queen object
+    private final King king; // King object
+    private boolean playerTurn; // Player turn object
 
 
     // Pawn class
-    private class Pawn {
+    private static class Pawn {
         private ImageIcon pawn;
 
         private Pawn(String color) {
@@ -25,7 +24,8 @@ public class Player {
         }
     }
 
-    private class Rook {
+    // Rook class
+    private static class Rook {
         private ImageIcon rook;
 
         private Rook(String color) {
@@ -37,7 +37,8 @@ public class Player {
         }
     }
 
-    private class Bishop {
+    // Bishop class
+    private static class Bishop {
         private ImageIcon bishop;
 
         private Bishop(String color) {
@@ -48,7 +49,8 @@ public class Player {
         }
     }
 
-    private class Knight {
+    // Knight class
+    private static class Knight {
         private ImageIcon knight;
 
         private Knight(String color) {
@@ -60,7 +62,8 @@ public class Player {
         }
     }
 
-    private class King {
+    // King class
+    private static class King {
         ImageIcon king;
 
         private King(String color) {
@@ -72,7 +75,8 @@ public class Player {
         }
     }
 
-    private class Queen {
+    // Queen class
+    private static class Queen {
         ImageIcon queen;
 
         private Queen(String color) {
@@ -84,6 +88,7 @@ public class Player {
         }
     }
 
+    // Player object
     public Player(String color, boolean playerTurn) {
         this.pawn = new Pawn(color);
         this.knight = new Knight(color);
@@ -92,42 +97,47 @@ public class Player {
         this.queen = new Queen(color);
         this.king = new King(color);
         this.playerTurn = playerTurn;
-        this.color = color;
     }
 
+    // Setter method for player's turn
     public void setPlayerTurn(boolean playerTurn) {
         this.playerTurn = playerTurn;
     }
 
+    // Getter method for player's turn
     public boolean getPlayerTurn() {
         return this.playerTurn;
     }
 
+    // Getter method for pawn
     public ImageIcon getPawn() {
         return this.pawn.pawn;
     }
 
+    // Getter method for rook
     public ImageIcon getRook() {
         return this.rook.rook;
     }
 
+    // Getter method for bishop
     public ImageIcon getBishop() {
         return this.bishop.bishop;
     }
 
+    // Getter method for knight
     public ImageIcon getKnight() {
         return this.knight.knight;
     }
 
+    // Getter method for queen
     public ImageIcon getQueen() {
         return this.queen.queen;
     }
 
+    // Getter method for king
     public ImageIcon getKing() {
         return this.king.king;
     }
 
-
-    public static void main(String[] args) {
-    }
+    // No main method needed in wrapper class. Tested in Game.
 }

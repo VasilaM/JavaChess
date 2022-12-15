@@ -1,24 +1,26 @@
 import javax.swing.*;
 
+// See if moving piece follows rules of chess
 public class LegalMove {
-    private boolean isLegalMove;
-    private int curR;
-    private int curC;
-    private int tarR;
-    private int tarC;
-    private JButton[][] buttons;
+    private boolean isLegalMove; // False if illegal move
+    private int curR; // Row of first button press
+    private int curC; // Column of first button press
+    private int tarR; // Row of second button press
+    private int tarC; // Column of second button press
+    private final JButton[][] buttons; // Buttons on board
 
+    // Construct class with button array
     public LegalMove(JButton[][] buttons) {
         this.isLegalMove = false;
         this.buttons = new JButton[8][8];
 
         for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                this.buttons[i][j] = buttons[i][j];
-            }
+            // Function suggested by IntelliJ
+            System.arraycopy(buttons[i], 0, this.buttons[i], 0, 8);
         }
     }
 
+    // Set positions from Game.java
     public void setPositions(int i, int j, int curR, int curC) {
         this.curC = curC;
         this.curR = curR;
@@ -26,11 +28,13 @@ public class LegalMove {
         this.tarC = j;
     }
 
+    // Boolean function called in Game.java
     public boolean getLegalMove() {
         this.isLegalMove = isDifferentColor() && checkPiece();
         return isLegalMove;
     }
 
+    // Check that piece is not being moved to square with the same colored piece
     private boolean isDifferentColor() {
         // this may be ugly, but it's the only way we know it works
         if ((buttons[curR][curC].getIcon() != null) && (buttons[tarR][tarC].getIcon() != null)) {
@@ -43,6 +47,7 @@ public class LegalMove {
 
     }
 
+    // Call function to check legality of move depending on piece used
     private boolean checkPiece() {
         if (buttons[curR][curC].toString().contains("pawn")) {
             return checkPawn();
@@ -53,13 +58,14 @@ public class LegalMove {
         } else if (buttons[curR][curC].toString().contains("bishop")) {
             return checkBishop();
         } else if (buttons[curR][curC].toString().contains("queen")) {
-            return checkBishop() || checkRook();
+            return checkBishop() || checkRook(); // Queen can move if conditions for moving either knight or bishop are met
         } else if (buttons[curR][curC].toString().contains("king")) {
             return checkKing();
         }
         return false;
     }
 
+    // Pawns move one up, except when starting can move two. Only capture diagonally
     private boolean checkPawn() {
 
         if (buttons[curR][curC].getIcon().toString().contains("white")) {
@@ -90,11 +96,13 @@ public class LegalMove {
 
     }
 
+    // Knights move one piece one direction and two pieces in the other direction. Goes directly to spot on board
     private boolean checkKnight() {
         return (Math.abs(tarC - curC) == 2 && (Math.abs(tarR - curR) == 1)) ||
                 (Math.abs(tarC - curC) == 1 && (Math.abs(tarR - curR) == 2));
     }
 
+    // Rooks move horizontally and vertically. Cannot move if a piece is in its way
     private boolean checkRook() {
         if (tarC == curC) {
             if (tarR > curR) {
@@ -133,6 +141,7 @@ public class LegalMove {
         return false;
     }
 
+    // Bishops move diagonally. Cannot move if a piece is in its way
     private boolean checkBishop() {
         if (Math.abs(tarC - curC) == Math.abs(tarR - curR)) {
             if (tarR > curR && tarC > curC) {
@@ -186,12 +195,10 @@ public class LegalMove {
         return false;
     }
 
+    // Kings can move one square at a time in any direction
     private boolean checkKing() {
         return Math.abs(tarR - curR) <= 1 && Math.abs(tarC - curC) <= 1;
     }
 
-    public static void main(String[] args) {
-
-    }
-
+    // No main needed. Tested in Game by trying many combinations of moves
 }

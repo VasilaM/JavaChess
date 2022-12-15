@@ -1,15 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// Create chess board
 public class Board {
-    private JButton[][] buttons; // buttons
-
-    public Board() {
-        this.buttons = buttons();
-    }
-
+    // Construct buttons array
     public JButton[][] buttons() {
         JButton[][] buttons = new JButton[8][8];
 
@@ -34,16 +29,15 @@ public class Board {
     }
 
 
+    // Use to test
     public static void main(String[] args) {
         // Create a Frame
         JFrame frame = new JFrame("Chess Board");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        ActionListener listener = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource() instanceof JButton) {
-                    System.out.println("something");
-                }
+        ActionListener listener = e -> {
+            if (e.getSource() instanceof JButton) {
+                System.out.println("something");
             }
         };
 

@@ -3,8 +3,12 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.concurrent.atomic.AtomicReference;
 
+// Initializes game
 public class Game {
-    public static void main(String[] args) {
+
+
+    // Called to start game
+    public static void newGame() {
         // Create a Frame
         JFrame frame = new JFrame("Chess Board");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,7 +38,7 @@ public class Game {
         buttons[0][3].setIcon(white.getQueen());
         buttons[0][4].setIcon(white.getKing());
 
-        // set up
+        // set up black players
         for (int i = 0; i < 8; i++) {
             buttons[6][i].setIcon(black.getPawn());
         }
@@ -59,11 +63,14 @@ public class Game {
         AtomicReference<Integer> curC = new AtomicReference<>();
         AtomicReference<Boolean> selected = new AtomicReference<>(false);
 
+        // Create ActionListener for button press
         ActionListener listener = e -> {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     if (e.getSource() == buttons[i][j]) {
                         LegalMove move = new LegalMove(buttons);
+
+                        // Check that it is correct player's turn
                         if (!(selected.get())
                                 && (buttons[i][j].toString().contains("white") && white.getPlayerTurn())) {
                             curR.set(i);
@@ -81,16 +88,23 @@ public class Game {
                                 (buttons[i][j].toString().contains("black") && !black.getPlayerTurn() ||
                                         buttons[i][j].toString().contains("white") && !white.getPlayerTurn())) {
                             throw new IllegalArgumentException("Invalid Move");
-                        } else {
+                        }
+
+                        // Move the piece
+                        else {
                             move.setPositions(i, j, curR.get(), curC.get());
                             if (move.getLegalMove()) {
+                                Checks.pawnPromotion(buttons, i, j);
+                                Checks.isKingCaptured(frame, buttons, curR.get(), curC.get(), i, j);
                                 buttons[i][j].setIcon(buttons[curR.get()][curC.get()].getIcon());
                                 buttons[curR.get()][curC.get()].setIcon(null);
                                 selected.set(false);
-                                Checks.pawnPromotion(buttons, i, j);
                                 white.setPlayerTurn(!white.getPlayerTurn());
                                 black.setPlayerTurn(!black.getPlayerTurn());
-                            } else {
+                            }
+
+                            // Reset button press if illegal move
+                            else {
                                 selected.set(false);
                                 throw new IllegalArgumentException("Invalid Move");
                             }
@@ -113,6 +127,11 @@ public class Game {
         //Display the window.
         frame.setSize(1000, 1000);
         frame.setVisible(true);
+
+    }
+
+    public static void main(String[] args) {
+        Game.newGame();
     }
 }
 

@@ -1,24 +1,45 @@
 import javax.swing.*;
 
+// Make checks
 public class Checks {
-//    JButton[][] buttons;
-//
-//    public Checks(JButton[][] buttons) {
-//        this.buttons = new JButton[8][8];
-//
-//        for (int i = 0; i < 8; i++) {
-//            for (int j = 0; j < 8; j++) {
-//                this.buttons[i][j] = buttons[i][j];
-//            }
-//        }
-//    }
 
+    // Check if king is captured (modified implementation of chess)
+    public static void isKingCaptured(JFrame frame, JButton[][] buttons, int curR, int curC, int tarR, int tarC) {
+        String color;
+        if (buttons[curR][curC].toString().contains("black"))
+            color = "Black";
+        else
+            color = "White";
 
+        // Option given to start new game if king is captured, current game closes
+        if (buttons[tarR][tarC].toString().contains("king")) {
+            String[] options = {"Play Again!", "Close Game"};
+            int result = JOptionPane.showOptionDialog(null, "Congratulations! " + color + " has won!",
+                    "Game Over!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+                    null, options, options[0]);
+            switch (result) {
+                case 0:
+                    frame.dispose();
+                    Game.newGame();
+                    break;
+                case 1:
+                    System.exit(1);
+                    break;
+            }
+        }
+
+    }
+
+    // Check if pawn needs to be promoted
     public static void pawnPromotion(JButton[][] buttons, int tarR, int tarC) {
         if (buttons[tarR][tarC].toString().contains("pawn")) {
+
+            // Case for black pawn
             if (buttons[tarR][tarC].toString().contains("black")) {
                 Player black = new Player("black", false);
                 if (tarR == 0) {
+
+                    // Display dialogue to inquire about promotion
                     String[] options = {"bishop", "knight", "rook", "queen"};
                     int result = JOptionPane.showOptionDialog(null, "Which piece would you like to promote " +
                                     "your pawn to?", "Pawn Promotion", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
@@ -40,9 +61,13 @@ public class Checks {
 
                 }
             }
+
+            // Case for white pawn
             if (buttons[tarR][tarC].toString().contains("white")) {
                 Player white = new Player("white", false);
                 if (tarR == 7) {
+
+                    // Display dialogue to inquire about promotion
                     String[] options = {"bishop", "knight", "rook", "queen"};
                     int result = JOptionPane.showOptionDialog(null, "Which piece would you like to promote " +
                                     "your pawn to?", "Pawn Promotion", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
@@ -67,8 +92,5 @@ public class Checks {
         }
     }
 
-
-    public static void main(String[] args) {
-
-    }
+    // No main needed. Tested in Game
 }
