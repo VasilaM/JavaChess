@@ -39,7 +39,8 @@ public class Checks {
                 Player black = new Player("black", false);
                 if (tarR == 0) {
 
-                    // Display dialogue to inquire about promotion
+                    // Display dialogue to inquire about promotion. This part of the code was partially informed by
+                    // https://stackoverflow.com/questions/1257420/making-a-joptionpane-with-4-options
                     String[] options = {"bishop", "knight", "rook", "queen"};
                     int result = JOptionPane.showOptionDialog(null, "Which piece would you like to promote " +
                                     "your pawn to?", "Pawn Promotion", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,

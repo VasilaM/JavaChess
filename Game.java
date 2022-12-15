@@ -63,7 +63,8 @@ public class Game {
         AtomicReference<Integer> curC = new AtomicReference<>();
         AtomicReference<Boolean> selected = new AtomicReference<>(false);
 
-        // Create ActionListener for button press
+        // Create ActionListener for button press. This code was informed by
+        // https://stackoverflow.com/questions/17624008/jbutton-array-actionlistener
         ActionListener listener = e -> {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
